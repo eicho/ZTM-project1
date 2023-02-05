@@ -1,5 +1,5 @@
 import { Component } from "react";
-import logo from "./logo.svg";
+import CardList from "./components/card-list/card-list.component";
 import "./App.css";
 
 class App extends Component {
@@ -38,7 +38,7 @@ class App extends Component {
     const filteredMonsters = monsters.filter((monster) => {
       return monster.name.toLocaleLowerCase().includes(searchField);
     });
-    return (
+return (
       <div className="App">
         <input
           className="search-box"
@@ -46,13 +46,7 @@ class App extends Component {
           placeholder="search monsters"
           onChange={onSearchChange}
         />
-        {filteredMonsters.map((monster) => {
-          return (
-            <div>
-              <h1 key={monster.id}>{monster.name}</h1>
-            </div>
-          );
-        })}
+        <CardList monsters={filteredMonsters} />
       </div>
     );
   }

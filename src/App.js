@@ -1,5 +1,6 @@
 import { Component } from "react";
 import CardList from "./components/card-list/card-list.component";
+import SearchBox from "./components/search-box/search-box.component";
 import "./App.css";
 
 class App extends Component {
@@ -19,12 +20,12 @@ class App extends Component {
             return { monsters: users };
           },
           () => {
-            console.log(this.state);
+            /*console.log(this.state);*/
           }
         )
       );
   }
-    onSearchChange = (event) => {
+  onSearchChange = (event) => {
     const searchField = event.target.value.toLocaleLowerCase();
 
     this.setState(() => {
@@ -32,19 +33,27 @@ class App extends Component {
     });
   };
   render() {
+    //console.log("render from app");
     const { monsters, searchField } = this.state;
     const { onSearchChange } = this;
 
     const filteredMonsters = monsters.filter((monster) => {
       return monster.name.toLocaleLowerCase().includes(searchField);
     });
-return (
+    return (
       <div className="App">
-        <input
-          className="search-box"
-          type="search"
+        {/*filteredMonsters.map((monster) => {
+          return (
+            <div>
+              <h1 key={monster.id}>{monster.name}</h1>
+            </div>
+          );
+        })*/}
+        <h1 className="app-title">Monsters Rolodex</h1>
+        <SearchBox
+          onChangeHandler={onSearchChange}
           placeholder="search monsters"
-          onChange={onSearchChange}
+          className="monsters-search-box"
         />
         <CardList monsters={filteredMonsters} />
       </div>

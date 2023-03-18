@@ -1,4 +1,4 @@
-import CardList from "../card-list/card-list.component";
+import CardList from "../card-list/card-list.component"; // eslint-disable-next-line
 import "./card.styles.css";
 
 const Card = ({ monster }) => {
